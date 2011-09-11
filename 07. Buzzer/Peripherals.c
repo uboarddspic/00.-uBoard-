@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////
 //
 //  File Name    : Peripherals.c
-//  Version      : 1.0
+//  Version      : 1.1
 //  Description  : Code for all on-board peripherals
 //  Author       : Jim Clermonts
 //  Target       : dsPIC33FJ64GP802 on uBRD
 //  Compiler     : MPLAB C Compiler for PIC24 and dsPIC v3.25 in LITE mode
 //  IDE          : MPLAB X IDE Beta4.0
 //  Programmer   : uBRD bootloader
-//  Last Updated : 09-01-2011
+//  Last Updated : 11-09-2011
 //
 //  Get latest updates from www.uboard.eu
 //  Copyright (c) Staronic 2011.
@@ -183,6 +183,8 @@ void Init_UART(void)
      *  Standard mode baudrate generator
      *	8-bit, no parity, 2 stop bits
      */
+    RPINR18 = 0x0009; // Make pin RP9 U1RX
+    RPOR4bits.RP8R = 0x03; // Make pin RP8 U1TX
     U1MODE = 0x8801;
     U1STA = 0x0400; // Enable transmitter / Receiver is active
     U1BRG = BRGVAL; // Initialize baud rate generator
